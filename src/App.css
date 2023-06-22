@@ -1,3 +1,22 @@
+:root{
+  --primary-color:#5e503f;
+  --secondary-color:#c6ac8f;
+  --black:#0a0908;
+  --light-black:#22333b;
+  --light-grey:#adb5bd;
+}
+body{
+  /* color: whitesmoke; */
+  font-family: Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: center;
+    color: var(--light-black);
+}
+button{
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
 .App {
   text-align: center;
 }

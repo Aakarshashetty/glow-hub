@@ -1,0 +1,57 @@
+  .content{   
+         display: flex;
+         justify-content: space-between;
+  }
+  header{
+    grid-area: h;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    height: 6vh;
+    text-align: center;
+    font-size: 17px;
+    position: fixed;
+    /* background-color: var(--light-black); */
+    z-index: 1;
+    width: 700px;
+    background-color: whitesmoke;
+  }
+  main{
+    grid-area: m;
+    /* border: 1px solid; */
+    width: 700px;
+    margin-top: 70px;
+    /* background-color: var(--black); */
+  }
+  nav{
+    
+    height: 100%;
+    
+  }
+  aside{
+    grid-area: a;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    /* background-color: var(--light-black); */
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  }
+  aside p{
+    margin: 0;
+  }
+  .sidebar{
+    width: 30%;
+    /* height: 100%; */
+    text-align: right;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    /* background-color: var(--light-black); */
+  }
+  .sidebar nav{
+    position: fixed;
+    z-index: 1;
+    left: 120px;
+    padding: 1rem 0rem ;
+  }
+  aside .suggestedUsers{
+    position: fixed;
+    z-index: 1;
+    right: 70px;
+  }
