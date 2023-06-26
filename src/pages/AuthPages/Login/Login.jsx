@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/auth-context";
+import"./login.css";
 
 const Login = () => {
   const { userLoginFunction, setIsLoggedIn, isLoggedIn } = useAuth();
@@ -28,7 +29,7 @@ const Login = () => {
     userLoginFunction(guestCreds.userName, guestCreds.password);
   };
   return (
-    <div>
+    <div className="login">
       <label>
         Username
         <input

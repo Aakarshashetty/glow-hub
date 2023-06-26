@@ -5,14 +5,16 @@ import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import { FaRegComment } from "react-icons/fa";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { useAuth } from "../../contexts/auth-context";
+import {HiOutlineDotsHorizontal} from "react-icons/hi"
+import {MdOutlineModeEditOutline,MdOutlineDelete} from "react-icons/md";
 import "./posts.css";
 
 const PostList = ({ posts }) => {
   // const [showCommentBox,setShowCommentBox] = useState(false)
   const [showEditBox, setShowEditBox] = useState(false);
   const [postToBeEdited, setPostToBeEdited] = useState({});
+  const [showEditAndDelete,setShowEditAndDelete] = useState(false)
   const navigate = useNavigate();
-
   const {
     likePostFunction,
     dislikePostFunction,
@@ -36,26 +38,30 @@ const PostList = ({ posts }) => {
     createdAt,
   } = posts;
 
-  const { firstName, lastName } = postData.users.find(
+  const { firstName, lastName,avatarURL } = postData.users.find(
     (user) => user.username === username
   );
   return (
     <div key={_id}>
-      <li key={_id} style={{ listStyle: "none" }}>
+      <li key={_id} style={{ listStyle: "none" }} onClick={()=>setShowEditAndDelete(false)} >
         <div className="postCard">
           <div className="userAvatar">
-            <img src="" alt="pc" />
+            <img src={avatarURL} alt="pc" width={30} height={30} />
           </div>
-          <div className="editAndDelete">
+          <div>
+          <HiOutlineDotsHorizontal onClick={()=>setShowEditAndDelete(!showEditAndDelete)} className="menuButton"/>
+         { showEditAndDelete && <div className="editAndDelete">
             <button
               onClick={() => {
                 setPostToBeEdited(posts);
                 setShowEditBox(true);
               }}
+              className="editButton"
             >
-              Edit
+             <MdOutlineModeEditOutline/>{" "}Edit
             </button>
-            <button onClick={() => deletePost(_id)}>Delete</button>
+            <button onClick={() => deletePost(_id)}><MdOutlineDelete/>{" "}Delete</button>
+          </div>}
           </div>
           <div className="postDetails">
             <div className="userNameAndTimestamp">

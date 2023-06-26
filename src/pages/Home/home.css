@@ -4,54 +4,232 @@
   }
   header{
     grid-area: h;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    height: 6vh;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    height: 7vh;
     text-align: center;
     font-size: 17px;
     position: fixed;
     /* background-color: var(--light-black); */
     z-index: 1;
-    width: 700px;
-    background-color: whitesmoke;
+    left: 0;
+    right: 0;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--secondary-color);
   }
   main{
     grid-area: m;
-    /* border: 1px solid; */
-    width: 700px;
+    width: 100%;
     margin-top: 70px;
-    /* background-color: var(--black); */
-  }
-  nav{
-    
-    height: 100%;
-    
   }
   aside{
-    grid-area: a;
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    /* background-color: var(--light-black); */
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    display: none;
+    
   }
   aside p{
     margin: 0;
   }
   .sidebar{
-    width: 30%;
-    /* height: 100%; */
-    text-align: right;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    /* background-color: var(--light-black); */
-  }
-  .sidebar nav{
+    margin-top: 60px;
     position: fixed;
     z-index: 1;
-    left: 120px;
-    padding: 1rem 0rem ;
+    background-color: whitesmoke;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 6vh;
+    text-align: right;
+  }
+  .sidebar nav{ 
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    font-size: 20px;
+    margin: 5px;
+  }
+  .sidebar nav div{
+    cursor: pointer;
+  }
+  .sidebar span{
+    color: transparent;
+  }
+  .sidebar nav img{
+    border-radius: 5rem;
+  }
+  .postbutton:hover{
+    background-color: var(--primary-color);
+  color: var(--secondary-color);
+  }
+  input[type="file"]{
+   display: none;
+  }
+  textarea{
+    border: none;
+  }
+  textarea:focus{
+    outline: none;
+  }
+  @media (min-width:768px){
+    .sidebar{
+      position: relative;
+      width: 10%;
+      text-align: right;
+      bottom: 0;
+      top: 0;
+      height: 100%;
+    }
+    .sidebar nav{
+      position: fixed;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      z-index: 1;
+      left: 30px;
+      padding: 1rem 0rem ;
+      height: 100%;
+    }
+    .sidebar nav div{
+      margin: 10px 0px;
+    }
+    .sidebar nav .profile{
+      text-align: left;
+    }
+    main{
+      margin-right: 230px;
+    }
+  }
+  @media (min-width:800px){
+    main{
+      margin-right: 150px;
+    }
+  }
+  @media (min-width:900px){
+    main{
+      margin-right: 150px;
+    }
+  }
+  @media (min-width:940px){
+    main{
+      margin-right: 150px;
+    }
+  }
+  @media (min-width:1024px){
+    .sidebar{
+      position: relative;
+      width: 30%;
+      text-align: right;
+      height: 100%;
+    }
+    .sidebar nav{
+      position: fixed;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      z-index: 1;
+      left: 100px;
+      padding: 1rem 0rem ;
+      height: 100%;
+    }
+    
+    .sidebar nav div{
+      margin: 10px;
+      
+    }
+    .sidebar nav .home::after{
+      content: " Home";
+    }
+    .sidebar nav .explore::after{
+      content: " Explore";
+    }
+    .sidebar nav .bookmarks::after{
+      content: " Bookmarks";
+    }
+    .sidebar nav .logout::after{
+      content: " Logout";
+    }
+    .sidebar nav .profile{
+      align-self: flex-start;
+      margin-right: 40px;
+      margin-top: 350px;
+      display: flex;
+      border-radius: 10px;
+      padding: 0.3rem;
+      cursor: pointer;
+    }
+    
+    .sidebar span{
+      font-size: 14px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      text-align: left;
+      padding: 0rem 0.3rem;
+      margin: 0px 5px;
+      color: var(--light-black);
+    }
+    .sidebar nav .profile:hover{
+      background-color: var(--secondary-color);
+      color: var(--primary-color);
+    }
+    .sidebar span p{
+      margin: 0;
+    }
+    aside{
+      grid-area: a;
+      display: flex;
+      flex-direction: column;
+      width: 30%;
+    }
+    main{
+      width: 700px;
+      margin-right: 380px;
+    }
+  }
+  aside{
+    position: fixed;
+    z-index: 1;
+    right: 30px;
+    margin-top: 70px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    height: 300px;
+    width: 320px;
+    border-radius: 5px;
   }
   aside .suggestedUsers{
-    position: fixed;
-    z-index: 1;
-    right: 70px;
+    margin: 10px auto;
+    width: 270px;
+    max-height: 250px;
+    overflow-y: scroll;
+  }
+  aside .suggestedUsers li{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    margin: 10px 10px;
+    border-radius: 5px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+  }
+  aside .suggestedUsers li img{
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    border-radius: 5rem;
+  }
+  aside .suggestedUsers li h3{
+    cursor: pointer;
+  }
+  aside .suggestedUsers li h3:hover{
+    color: var(--black);
+  }
+  aside .suggestedUsers li p{
+    margin: 0;
+  }
+  aside .suggestedUsers li .follow{
+    margin-top: 10px;
+    border: 1px solid transparent;
+    align-self: center;
+    
   }

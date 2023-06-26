@@ -15,8 +15,30 @@
 }
 .editAndDelete {
     position: absolute;
-    /* left: 0; */
-    right: 0;
+    right: 30px;
+    top:40px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--light-grey);
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+.editAndDelete button{
+    padding: 0.5rem 1rem;
+    font-size: medium;
+}
+.editAndDelete button:hover{
+    background-color: rgb(194, 193, 193);
+}
+.editAndDelete .editButton{
+    border-bottom: 1px solid var(--light-grey);
+}
+.menuButton{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    font-size: 25px;
 }
 .userAvatar{
     width: 50px;
@@ -26,6 +48,7 @@
     position: absolute;
     left: 0px;
     margin: 20px 0px;
+    border-radius: 5rem;
 }
 .postDetails{
     display: flex;
@@ -62,6 +85,8 @@
     position: relative;
     margin: 10px;
     font-size: large;
+    background-color: transparent;
+    color: var(--light-black);
 }
 .buttons .likecount{
     display: inline-block;

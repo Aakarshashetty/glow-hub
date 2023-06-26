@@ -7,10 +7,9 @@ import { useAuth } from "../../contexts/auth-context";
 const Bookmarks = () => {
   const { postData } = usePosts();
   const { userData } = useAuth();
-  console.log(userData);
-  console.log(postData.bookmarks);
   const getBookmarkedPost = (postId) =>
     postData.posts.filter(({ _id }) => _id === postId);
+    
   return (
     <div>
       {userData?.bookmarks?.map((postId) => {

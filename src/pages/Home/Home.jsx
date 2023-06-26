@@ -5,16 +5,14 @@ import { useAuth } from "../../contexts/auth-context";
 import PostList from "../Posts/PostList";
 import SideBar from "../../Components/SideBar";
 import SuggestedUsers from "../../Components/SuggestedUsers";
-import { useNavigate } from "react-router";
+import { LuImagePlus } from "react-icons/lu";
+import { uploadImage } from "./uploadImage";
 
 const Home = () => {
-  const [sideBar, setSideBar] = useState("Home");
   const { postData, createNewPost, postDispatcher } = usePosts();
   const { userData } = useAuth();
-  const navigate = useNavigate();
   const [content, setContent] = useState("");
-  const [image, setImage] = useState("");
-  const [url, setUrl] = useState("");
+  const [image, setImage] = useState(null);
 
   const followingUsers = postData?.userDetails?.following?.map(
     (user) => user.username
@@ -25,91 +23,85 @@ const Home = () => {
       followingUsers?.includes(posts.username)
   );
 
-  const uploadImage = () => {
-    const data = new FormData();
-    data.append("file", image);
-    data.append("upload_preset", "glow-hub");
-    data.append("cloud_name", "dbiove79b");
-    fetch("https://api.cloudinary.com/v1_1/dbiove79b/image/upload", {
-      method: "post",
-      body: data,
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setUrl(data.url);
-      })
-      .catch((err) => console.log(err));
+  const submitPost = async () => {
+    if (image) {
+      const resp = await uploadImage(image);
+      createNewPost(content, resp.url);
+    } else createNewPost(content, "");
+
+    setContent("");
+    setImage(null);
   };
 
   return (
     <div className="content">
-      <SideBar sideBar={sideBar} setSideBar={setSideBar} />
-      <div>
-        <header>{sideBar}</header>
-        <main>
-          {sideBar === "Home" && (
-            <div>
-              <div
-                style={{ border: "1px solid", margin: "10px", padding: "1rem" }}
-              >
-                <textarea
-                  type="text"
-                  placeholder="What's happening?"
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                />
-                {url !== "" && (
-                  <img src={url} alt="inputImage" height={50} width={50} />
-                )}
-                {url !== "" && (
-                  <button onClick={() => setUrl("")}>close</button>
-                )}
-                {
-                  <input
-                    type="file"
-                    onChange={(e) => {
-                      setImage(e.target.files[0]);
-                    }}
-                  ></input>
-                }
-                {<button onClick={uploadImage}>upload</button>}
-                <button
-                  onClick={() => {
-                    createNewPost(content, url);
-                    setContent("");
-                    setUrl("");
-                  }}
-                  disabled={content === "" && url === ""}
-                >
-                  Post
-                </button>
-              </div>
+      <SideBar />
+      <main>
+        <div>
+          <div
+            style={{ border: "1px solid", margin: "10px" }}
+            className="newpost"
+          >
+            <textarea
+              type="text"
+              placeholder="What's happening?"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+            {image && (
               <div>
-                <button
-                  onClick={() =>
-                    postDispatcher({ type: "FILTER_POSTS", poaload: "date" })
-                  }
-                >
-                  Latest
-                </button>
-                <button
-                  onClick={() =>
-                    postDispatcher({ type: "FILTER_POSTS", poaload: "likes" })
-                  }
-                >
-                  Trending
-                </button>
+                <img
+                  src={URL.createObjectURL(image)}
+                  alt="inputImage"
+                  height={50}
+                  width={50}
+                />
+
+                <button onClick={() => setImage(null)}>close</button>
               </div>
-              {filterByFollowingUsers.map((posts) => (
-                <PostList posts={posts} key={posts.id} />
-              ))}
-            </div>
-          )}
-          {sideBar === "Explore" && navigate("/explore")}
-          {sideBar === "Bookmarks" && navigate("/bookmarks")}
-          {sideBar === "Liked Posts" && navigate("/liked")}
-        </main>
-      </div>
+            )}
+            <label>
+              <input
+                type="file"
+                onChange={(e) => {
+                  if (Math.round(e.target.files[0].size / 1024000) > 1) {
+                    console.error("File size should not be more than 1Mb");
+                  } else {
+                    setImage(e.target.files[0]);
+                  }
+                }}
+              />
+              <LuImagePlus />
+            </label>
+            <button
+              onClick={submitPost}
+              disabled={content === "" && image === null}
+              className="postbutton"
+            >
+              Post
+            </button>
+          </div>
+          <div>
+            <button
+              onClick={() =>
+                postDispatcher({ type: "FILTER_POSTS", poaload: "date" })
+              }
+            >
+              Latest
+            </button>
+            <button
+              onClick={() =>
+                postDispatcher({ type: "FILTER_POSTS", poaload: "likes" })
+              }
+            >
+              Trending
+            </button>
+          </div>
+          {filterByFollowingUsers.map((posts) => (
+            <PostList posts={posts} key={posts.id} />
+          ))}
+        </div>
+      </main>
       <SuggestedUsers />
     </div>
   );

@@ -13,6 +13,10 @@ import Profile from "./pages/Profile/Profile";
 function App() {
   return (
     <div className="App">
+      <header>
+          <h2>Glow Hub</h2>
+          <input type='text' placeholder='search user'/>
+        </header>
       <Routes>
         <Route
           path="/"
