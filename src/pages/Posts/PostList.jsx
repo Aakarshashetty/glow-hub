@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
-import { usePosts } from "../../contexts/post-context";
-import { FcLikePlaceholder, FcLike } from "react-icons/fc";
-import { FaRegComment } from "react-icons/fa";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
+import { FaRegComment } from "react-icons/fa";
+import { FcLike, FcLikePlaceholder } from "react-icons/fc";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import { MdOutlineDelete, MdOutlineModeEditOutline } from "react-icons/md";
+import { useNavigate } from "react-router";
+import { getDate } from "../../backend/utils/getDate";
 import { useAuth } from "../../contexts/auth-context";
-import {HiOutlineDotsHorizontal} from "react-icons/hi"
-import {MdOutlineModeEditOutline,MdOutlineDelete} from "react-icons/md";
+import { usePosts } from "../../contexts/post-context";
 import "./posts.css";
 
 const PostList = ({ posts }) => {
@@ -65,10 +66,10 @@ const PostList = ({ posts }) => {
           </div>
           <div className="postDetails">
             <div className="userNameAndTimestamp">
-              <h3>
+              <h3 onClick={() => {navigate(`/user/profile/${username}`);window.scroll(0,0)}}>
                 {firstName} {lastName}
               </h3>
-              <p className="createdAt"> . {createdAt}</p>
+              <p className="createdAt"> . {getDate(createdAt)}</p>
             </div>
 
             <p className="username">@ {username}</p>

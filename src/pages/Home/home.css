@@ -71,6 +71,49 @@
   textarea:focus{
     outline: none;
   }
+  .newpost{
+    display: flex;
+    justify-content: space-between;
+    height: 10vh;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 0.3rem 0rem;
+    border-radius: 10px;
+  }
+  .newpost img{
+    margin-left: 20px;
+    border-radius: 5rem;
+  }
+  textarea{
+    resize: none;
+    width: 70vh;
+  }
+  .file{
+    align-self: flex-end;
+    width: 10vh;
+    display: flex;
+    justify-content: space-around;
+   
+  }
+  .file button{
+   margin: 10px;
+  }
+  .file .file-icon{
+    margin: 10px 0px;
+    font-size: 19px;
+    cursor: pointer;
+  }
+  .latestAndTrending{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .latestAndTrending button{
+    margin: 10px;
+    padding: 0.3rem 0.5rem;
+  }
+  .trending{
+    font-size: 15px;
+    text-align: center;
+  }
   @media (min-width:768px){
     .sidebar{
       position: relative;
@@ -217,9 +260,13 @@
     top: 20px;
     left: 10px;
     border-radius: 5rem;
+    cursor: pointer;
   }
   aside .suggestedUsers li h3{
     cursor: pointer;
+  }
+  aside .suggestedUsers li h3:hover{
+    color: var(--black);
   }
   aside .suggestedUsers li h3:hover{
     color: var(--black);

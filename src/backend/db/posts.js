@@ -61,7 +61,7 @@ export const posts = [
     },
     comments: [],
     username: "CleanBeautyRevolution",
-    createdAt: "2022-09-06",
+    createdAt: "2023-09-06",
     updatedAt: formatDate(),
   },
   {

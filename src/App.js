@@ -8,7 +8,7 @@ import Login from "./pages/AuthPages/Login/Login";
 import SignUp from "./pages/AuthPages/Signup/SignUp";
 import RequiresAuth from "./pages/AuthPages/RequiresAuth";
 import SinglePost from "./pages/Posts/SinglePost";
-import Profile from "./pages/Profile/Profile";
+import UserProfile from "./pages/userprofile/UserProfile";
 
 function App() {
   return (
@@ -31,8 +31,8 @@ function App() {
         <Route path="/liked" element={<LikedPosts />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/profile" element={<Profile />} />
         <Route path="/post/:postId" element={<SinglePost />} />
+        <Route path="/user/profile/:userName" element={<UserProfile />} />
       </Routes>
     </div>
   );

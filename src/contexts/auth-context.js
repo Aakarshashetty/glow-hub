@@ -6,6 +6,7 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [userData, setUserData] = useState(localStorage?.user);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showEditProfile, setShowEditProfile] = useState(false);
   const userLoginFunction = async (userName, userPassword) => {
     try {
       const userData = await axios.post("/api/auth/login", {
@@ -51,7 +52,8 @@ export const AuthContextProvider = ({ children }) => {
         setIsLoggedIn,
         newUserSignUpFunction,
         setUserData,
-        
+        showEditProfile,
+        setShowEditProfile
       }}
     >
       {children}

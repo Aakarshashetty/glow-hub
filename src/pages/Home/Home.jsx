@@ -6,7 +6,8 @@ import PostList from "../Posts/PostList";
 import SideBar from "../../Components/SideBar";
 import SuggestedUsers from "../../Components/SuggestedUsers";
 import { LuImagePlus } from "react-icons/lu";
-import { uploadImage } from "./uploadImage";
+import { uploadImage } from "../../backend/utils/uploadImage";
+import {BiTrendingUp} from "react-icons/bi"
 
 const Home = () => {
   const { postData, createNewPost, postDispatcher } = usePosts();
@@ -22,7 +23,17 @@ const Home = () => {
       posts.username === userData.username ||
       followingUsers?.includes(posts.username)
   );
-
+  const getFilteredPosts = () => {
+    let updatedPosts = filterByFollowingUsers;
+    if(postData.filterBy === "latest"){
+      updatedPosts = filterByFollowingUsers.sort((a,b) => b.createdAt.localeCompare(a.createdAt))
+    }
+    if(postData.filterBy === "likes"){
+      updatedPosts = filterByFollowingUsers.sort((a,b)=>b.likes.likeCount - a.likes.likeCount)
+    }
+    return updatedPosts
+  }
+  
   const submitPost = async () => {
     if (image) {
       const resp = await uploadImage(image);
@@ -39,9 +50,10 @@ const Home = () => {
       <main>
         <div>
           <div
-            style={{ border: "1px solid", margin: "10px" }}
+            style={{  margin: "10px" }}
             className="newpost"
           >
+            <img src={userData.avatarURL} alt="pc" width={35} height={35} />
             <textarea
               type="text"
               placeholder="What's happening?"
@@ -60,6 +72,7 @@ const Home = () => {
                 <button onClick={() => setImage(null)}>close</button>
               </div>
             )}
+            <div className="file">
             <label>
               <input
                 type="file"
@@ -71,7 +84,7 @@ const Home = () => {
                   }
                 }}
               />
-              <LuImagePlus />
+              <LuImagePlus className="file-icon"/>
             </label>
             <button
               onClick={submitPost}
@@ -80,24 +93,25 @@ const Home = () => {
             >
               Post
             </button>
+            </div>
           </div>
-          <div>
+          <div className="latestAndTrending">
             <button
               onClick={() =>
-                postDispatcher({ type: "FILTER_POSTS", poaload: "date" })
+                postDispatcher({ type: "FILTER_POSTS", payload: "latest" })
               }
             >
               Latest
             </button>
             <button
               onClick={() =>
-                postDispatcher({ type: "FILTER_POSTS", poaload: "likes" })
+                postDispatcher({ type: "FILTER_POSTS", payload: "likes" })
               }
             >
-              Trending
+              <BiTrendingUp className="trending"/> Trending
             </button>
           </div>
-          {filterByFollowingUsers.map((posts) => (
+          {getFilteredPosts().map((posts) => (
             <PostList posts={posts} key={posts.id} />
           ))}
         </div>

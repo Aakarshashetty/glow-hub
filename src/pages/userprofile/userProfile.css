@@ -1,0 +1,89 @@
+.profile{
+    display: flex;
+}
+.userprofile{
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    margin-right: 370px;
+}
+.profile .userDetails{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    padding: 1rem 0.5rem;
+    position: relative;
+}
+.profile .userDetails .user{
+    display: flex;
+    justify-content: space-around;
+}
+.user img{
+    margin: 10px;
+    border-radius: 5rem;
+}
+.profile .userDetails .user .userBio{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 0.5rem;
+}
+.profile .userDetails .user .userBio h2{
+    margin: 0;
+}
+.userBio small{
+    color: var(--light-grey);
+}
+.userBio .userFollwingAnsFollowers{
+    display: flex;
+    justify-content: space-around;
+}
+.userBio .userFollwingAnsFollowers p{
+    font-weight: bold;
+}
+.userBio .userFollwingAnsFollowers p:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.profileButtons{
+    position: absolute;
+    right: 20px;
+    top:20px;
+    
+}
+.profileButtons button{
+    position: relative;
+    font-size: 18px;
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+    color: var(--light-black);
+}
+.profileButtons button:hover{
+    top:-2px;   
+}
+.userprofile-user{
+    display: flex;
+}
+.userprofile-user button{
+    justify-content: space-between;
+    align-self: center;
+    background-color: transparent;
+    color: var(--light-black);
+    cursor: pointer;
+    font-size: 20px;
+    margin: 0px 10px;
+}
+.userprofile-user button:hover{
+    color: var(--black);
+}
+.userprofile-user div{
+    margin: 20px;
+}
+.userprofile-user div h2{
+    margin: 0
+}
+.userprofile-user div p{
+    margin: 0;
+    text-align: left;
+    color: var(--light-grey);
+}
