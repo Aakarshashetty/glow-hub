@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import "./home.css";
-import { usePosts } from "../../contexts/post-context";
-import { useAuth } from "../../contexts/auth-context";
-import PostList from "../Posts/PostList";
+import { BiTrendingUp } from "react-icons/bi";
+import { LuImagePlus } from "react-icons/lu";
 import SideBar from "../../Components/SideBar";
 import SuggestedUsers from "../../Components/SuggestedUsers";
-import { LuImagePlus } from "react-icons/lu";
 import { uploadImage } from "../../backend/utils/uploadImage";
-import {BiTrendingUp} from "react-icons/bi";
+import { useAuth } from "../../contexts/auth-context";
+import { usePosts } from "../../contexts/post-context";
+import PostList from "../Posts/PostList";
+import "./home.css";
 
-import Loader from "../../Components/Loader";
 import Header from "../../Components/Header";
+import Loader from "../../Components/Loader";
 
 const Home = () => {
   const { postData, createNewPost, postDispatcher,isLoading,getPosts,getUsers } = usePosts();

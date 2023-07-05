@@ -1,9 +1,9 @@
 import React from "react";
-import { usePosts } from "../../contexts/post-context";
-import PostList from "../Posts/PostList";
+import Header from "../../Components/Header";
 import SideBar from "../../Components/SideBar";
 import SuggestedUsers from "../../Components/SuggestedUsers";
-import Header from "../../Components/Header";
+import { usePosts } from "../../contexts/post-context";
+import PostList from "../Posts/PostList";
 
 const Explore = () => {
   const { postData } = usePosts();

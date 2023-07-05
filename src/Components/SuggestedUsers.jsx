@@ -1,7 +1,7 @@
 import React from "react";
-import { usePosts } from "../contexts/post-context";
-import { useAuth } from "../contexts/auth-context";
 import { useNavigate } from "react-router";
+import { useAuth } from "../contexts/auth-context";
+import { usePosts } from "../contexts/post-context";
 
 const SuggestedUsers = () => {
   const { postData, followUser } = usePosts();

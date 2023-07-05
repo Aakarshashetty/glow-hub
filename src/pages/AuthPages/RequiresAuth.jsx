@@ -1,6 +1,6 @@
 import React from "react";
-import { useAuth } from "../../contexts/auth-context";
 import { Navigate, useLocation } from "react-router";
+import { useAuth } from "../../contexts/auth-context";
 
 const RequiresAuth = ({ children }) => {
   const { isLoggedIn } = useAuth();

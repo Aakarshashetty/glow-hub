@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useAuth } from "../../../contexts/auth-context";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useNavigate } from "react-router";
-import { FiEyeOff, FiEye } from "react-icons/fi";
-import "./signup.css";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../../contexts/auth-context";
+import "./signup.css";
 
 const SignUp = () => {
   const [newUserInputData, setNewUSerInputData] = useState({

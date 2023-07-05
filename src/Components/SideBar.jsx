@@ -1,7 +1,8 @@
 import React from "react";
-import { useAuth } from "../contexts/auth-context";
-import { MdExplore, MdHome, MdBookmarks, MdLogout } from "react-icons/md";
+import toast from "react-hot-toast";
+import { MdBookmarks, MdExplore, MdHome, MdLogout } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/auth-context";
 import "./sideBar.css";
 
 const SideBar = () => {
@@ -21,7 +22,7 @@ const SideBar = () => {
         <NavLink to="/bookmarks"className="bookmarks" style={getActiveStyle}>
           <MdBookmarks />
         </NavLink>
-        <NavLink to="/login" className="logout" style={getActiveStyle} onClick={()=>localStorage.setItem("user", "")}>
+        <NavLink to="/login" className="logout" style={getActiveStyle} onClick={()=>{localStorage.setItem("user", "");toast("Until next time! Stay connected!",{icon:'👋'})}}>
           <MdLogout />
         </NavLink>
         <div   className="profile" onClick={()=>navigate(`/user/profile/${userData.username}`)}>

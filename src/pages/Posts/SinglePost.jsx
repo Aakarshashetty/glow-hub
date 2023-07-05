@@ -1,14 +1,14 @@
 import React from "react";
+import { BsArrowLeft } from "react-icons/bs";
 import { useNavigate, useParams } from "react-router";
-import { usePosts } from "../../contexts/post-context";
-import "./singlePost.css";
-import "./posts.css";
+import Header from "../../Components/Header";
 import SideBar from "../../Components/SideBar";
 import SuggestedUsers from "../../Components/SuggestedUsers";
-import { BsArrowLeft } from "react-icons/bs";
-import PostList from "./PostList";
 import { getDate } from "../../backend/utils/getDate";
-import Header from "../../Components/Header";
+import { usePosts } from "../../contexts/post-context";
+import PostList from "./PostList";
+import "./posts.css";
+import "./singlePost.css";
 
 const SinglePost = () => {
   const { postId } = useParams();

@@ -1,19 +1,21 @@
+import { Toaster } from "react-hot-toast";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import Explore from "./pages/Explore/Explore";
-import Bookmarks from "./pages/Bookmarks/Bookmarks";
-import LikedPosts from "./pages/LikedPosts/LikedPosts";
-import Home from "./pages/Home/Home";
 import Login from "./pages/AuthPages/Login/Login";
-import SignUp from "./pages/AuthPages/Signup/SignUp";
+import Logout from "./pages/AuthPages/Logout/Logout";
 import RequiresAuth from "./pages/AuthPages/RequiresAuth";
+import SignUp from "./pages/AuthPages/Signup/SignUp";
+import Bookmarks from "./pages/Bookmarks/Bookmarks";
+import Explore from "./pages/Explore/Explore";
+import Home from "./pages/Home/Home";
+import LikedPosts from "./pages/LikedPosts/LikedPosts";
 import SinglePost from "./pages/Posts/SinglePost";
 import UserProfile from "./pages/userprofile/UserProfile";
-import Logout from "./pages/AuthPages/Logout/Logout";
 
 function App() {
   return (
     <div className="App">
+      <Toaster position="top-center" reverseOrder={false} />
       <Routes>
         <Route
           path="/"

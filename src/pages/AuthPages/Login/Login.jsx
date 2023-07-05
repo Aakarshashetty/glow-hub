@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import Loader from "../../../Components/Loader";
 import { useAuth } from "../../../contexts/auth-context";
 import "./login.css";
-import Loader from "../../../Components/Loader";
 
 const Login = () => {
   const { userLoginFunction, setIsLoggedIn, isLoggedIn,isLoading } = useAuth();

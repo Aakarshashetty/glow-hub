@@ -1,17 +1,13 @@
-import {
-  createContext,
-  useContext,
-  useReducer,
-  
-} from "react";
-import { postReducer } from "../reducers/postReducer";
 import axios from "axios";
+import { createContext, useContext, useReducer } from "react";
+import toast from "react-hot-toast";
+import { postReducer } from "../reducers/postReducer";
 import { useAuth } from "./auth-context";
 
 const PostContext = createContext();
 
 export const PostContextProvider = ({ children }) => {
-  const { setUserData, userData,isLoading,setIsLoading } = useAuth();
+  const { setUserData, userData, isLoading, setIsLoading } = useAuth();
   const encodedToken = localStorage.getItem("encodedToken");
   const [postData, postDispatcher] = useReducer(postReducer, {
     users: [],
@@ -20,34 +16,30 @@ export const PostContextProvider = ({ children }) => {
     bookmarks: [],
     filterBy: "",
   });
-  
-  const getPosts = async()=>{
+
+  const getPosts = async () => {
     try {
       setIsLoading(true);
       const postData = await axios.get("/api/posts");
-      if(postData.status === 200 || postData.status === 201) {
+      if (postData.status === 200 || postData.status === 201) {
         postDispatcher({ type: "GET_POSTS", payload: postData.data.posts });
         setIsLoading(false);
-      } 
-     
+      }
     } catch (e) {
       console.error("couldn't able to get posts data");
     } finally {
-     
     }
-  }
-  const getUsers = async() => {
-    try{
+  };
+  const getUsers = async () => {
+    try {
       const users = await axios.get("/api/users");
-      if(users.status === 200 || users.status === 201) {
+      if (users.status === 200 || users.status === 201) {
         postDispatcher({ type: "GET_USERS", payload: users.data.users });
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }catch(e){
+    } catch (e) {}
+  };
 
-    }
-  }
-  
   const likePostFunction = async (postId) => {
     try {
       const response = await axios.post(
@@ -91,10 +83,12 @@ export const PostContextProvider = ({ children }) => {
       );
       (response.status === 200 || response.status === 201) &&
         setUserData({ ...userData, bookmarks: response.data.bookmarks });
+      toast("Bookmark added! Keep your favorite posts within reach!", {
+        icon: "📌",
+      });
     } catch (e) {
       console.error(e);
     }
-    // postDispatcher({ type: "ADD_TO_BOOKMARKS", payload: post });
   };
   const removeFromBookMarks = async (postId) => {
     try {
@@ -105,6 +99,9 @@ export const PostContextProvider = ({ children }) => {
       );
       (response.status === 200 || response.status === 201) &&
         setUserData({ ...userData, bookmarks: response.data.bookmarks });
+      toast("Post unbookmarked! Make room for fresh discoveries!", {
+        icon: "📌",
+      });
     } catch (e) {
       console.error(e);
     }
@@ -120,6 +117,9 @@ export const PostContextProvider = ({ children }) => {
       );
       (response.status === 200 || response.status === 201) &&
         postDispatcher({ type: "GET_POSTS", payload: response.data.posts });
+      toast("Post created! Share your thoughts with the world!", {
+        icon: "📝",
+      });
     } catch (e) {
       console.error("error", e);
     }
@@ -136,6 +136,7 @@ export const PostContextProvider = ({ children }) => {
       );
       (response.status === 200 || response.status === 201) &&
         postDispatcher({ type: "GET_POSTS", payload: response.data.posts });
+      toast("Post updated! Fine-tuning the masterpiece!", { icon: "🖊️" });
     } catch (e) {
       console.error(e);
     }
@@ -148,6 +149,7 @@ export const PostContextProvider = ({ children }) => {
       });
       (response.status === 200 || response.status === 201) &&
         postDispatcher({ type: "GET_POSTS", payload: response.data.posts });
+      toast("Farewell, post! Embrace the power of letting go!", { icon: "🗑️" });
     } catch (e) {
       console.error(e);
     }
@@ -169,6 +171,9 @@ export const PostContextProvider = ({ children }) => {
           JSON.stringify({ user: response.data.user })
         );
       postDispatcher({ type: "ADD_USER_DETAILS", payload: response.data.user });
+      toast("New connection made! Enjoy the shared experiences!", {
+        icon: "🙌",
+      });
     } catch (e) {
       console.error(e);
     }
@@ -191,6 +196,7 @@ export const PostContextProvider = ({ children }) => {
           JSON.stringify({ user: response.data.user })
         );
       postDispatcher({ type: "ADD_USER_DETAILS", payload: response.data.user });
+      toast("Unfollowed! Freeing up your feed! ", { icon: "❌" });
     } catch (e) {
       console.error(e);
     }
@@ -198,24 +204,24 @@ export const PostContextProvider = ({ children }) => {
 
   const editUser = async (userData) => {
     try {
-      const response =
-        await axios.post(
-          "/api/users/edit",
-          { userData },
-          {
-            headers: {
-              authorization: encodedToken,
-            },
-          }
-        );
-        
-        (response.status === 200 || response.status === 201) &&
+      const response = await axios.post(
+        "/api/users/edit",
+        { userData },
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+
+      (response.status === 200 || response.status === 201) &&
         localStorage.setItem(
           "user",
           JSON.stringify({ user: response.data.user })
         );
       postDispatcher({ type: "ADD_USER_DETAILS", payload: response.data.user });
-      postDispatcher({type: "EDIT_USER",payload:response.data.user})
+      postDispatcher({ type: "EDIT_USER", payload: response.data.user });
+      toast("Profile updated! Showcase your best self!", { icon: "📷" });
     } catch (e) {
       console.error(e);
     }

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { BsArrowLeft, BsPersonFillAdd, BsPersonFillDash } from "react-icons/bs";
+import { FaUserEdit } from "react-icons/fa";
+import { FiLogOut, FiMessageSquare } from "react-icons/fi";
 import { useNavigate, useParams } from "react-router";
+import Header from "../../Components/Header";
+import SideBar from "../../Components/SideBar";
+import SuggestedUsers from "../../Components/SuggestedUsers";
+import { useAuth } from "../../contexts/auth-context";
 import { usePosts } from "../../contexts/post-context";
 import PostList from "../Posts/PostList";
-import SideBar from "../../Components/SideBar";
-import { useAuth } from "../../contexts/auth-context";
-import { BsArrowLeft, BsPersonFillAdd, BsPersonFillDash } from "react-icons/bs";
-import { FiMessageSquare, FiLogOut } from "react-icons/fi";
-import { FaUserEdit } from "react-icons/fa";
-import "./userProfile.css";
-import SuggestedUsers from "../../Components/SuggestedUsers";
 import SelectAvatar from "./SelectAvatar";
-import Header from "../../Components/Header";
+import "./userProfile.css";
 
 const UserProfile = () => {
   const { userName } = useParams();
