@@ -1,3 +1,49 @@
 .login{
-   padding: 60px;
+   padding: 95px 0px;
+   display: flex;
+   justify-content: space-around;
+   /* background-color: wheat; */
+   height: 100%;
+  
 }
+.login-inputs{
+   display: flex;
+   flex-direction: column;
+    justify-content: space-around;
+    height: 50vh;
+    width: 50vh;
+    padding: 4rem 1rem;
+    border-radius: 5px;
+}
+.login-inputs:hover{
+   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.login-inputs h1{
+   color: var(--primary-color);
+}
+.login-inputs input{
+   height: 1.7rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    padding: 0.5rem;
+    background-color: transparent;
+    margin: 20px 0px;
+}
+.login-inputs input:focus{
+   outline: none;
+}
+.login-inputs div{
+   text-align: left;
+}
+.login-inputs .login-button,.login .login-guest{
+   padding: 0.5rem 5rem;
+   border-radius: 5px;
+   margin: 10px 0px;
+}
+.header{
+   display: none;
+}
+.required:after {
+   content:" *";
+   color: rgb(190, 21, 21);
+ }

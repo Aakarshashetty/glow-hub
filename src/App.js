@@ -9,14 +9,11 @@ import SignUp from "./pages/AuthPages/Signup/SignUp";
 import RequiresAuth from "./pages/AuthPages/RequiresAuth";
 import SinglePost from "./pages/Posts/SinglePost";
 import UserProfile from "./pages/userprofile/UserProfile";
+import Logout from "./pages/AuthPages/Logout/Logout";
 
 function App() {
   return (
     <div className="App">
-      <header>
-          <h2>Glow Hub</h2>
-          <input type='text' placeholder='search user'/>
-        </header>
       <Routes>
         <Route
           path="/"
@@ -30,6 +27,7 @@ function App() {
         <Route path="/bookmarks" element={<Bookmarks />} />
         <Route path="/liked" element={<LikedPosts />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/post/:postId" element={<SinglePost />} />
         <Route path="/user/profile/:userName" element={<UserProfile />} />

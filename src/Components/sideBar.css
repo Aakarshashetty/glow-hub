@@ -1,0 +1,109 @@
+.sidebar {
+    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+    /* border-right: 1px solid var(--primary-color); */
+    /* border-radius: 5px; */
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: whitesmoke;
+    height: 6vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.sidebar span {
+    display: none
+}
+
+.sidebar img {
+    border-radius: 5rem;
+}
+
+@media (min-width:768px) {
+    .sidebar {
+        margin-top: 60px;
+        width: 10%;
+        position: fixed;
+        top: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        z-index: 1;
+        left: 20px;
+        padding: 1rem 0rem;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: transparent;
+    }
+    
+
+    .sidebar div {
+        margin: 10px 0px;
+    }
+
+    .sidebar .profile {
+        text-align: left;
+    }
+}
+
+@media (min-width:1024px) {
+    .sidebar {
+        font-size: 18px;
+        width: 20%;
+        align-items: flex-start;
+    }
+    
+    .sidebar a{
+        margin-left: 80px;
+    }
+    .sidebar .home::after {
+        content: " Home";
+    }
+
+    .sidebar .explore::after {
+        content: " Explore";
+    }
+
+    .sidebar .bookmarks::after {
+        content: " Bookmarks";
+    }
+
+    .sidebar .logout::after {
+        content: " Logout";
+    }
+
+    .sidebar .profile {
+        align-self: flex-end;
+        margin-right: 20px;
+        margin-top: 390px;
+        display: flex;
+        border-radius: 10px;
+        padding: 0.3rem;
+        cursor: pointer;
+    }
+
+    .sidebar span {
+        display: block;
+        font-size: 14px;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        text-align: left;
+        padding: 0rem 0.3rem;
+        margin: 0px 5px;
+        color: var(--light-black);
+    }
+
+    .sidebar .profile:hover {
+        background-color: var(--secondary-color);
+        color: var(--primary-color);
+    }
+
+    .sidebar span p {
+        margin: 0;
+    }
+}

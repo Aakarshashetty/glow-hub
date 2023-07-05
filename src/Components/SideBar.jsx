@@ -1,16 +1,17 @@
 import React from "react";
 import { useAuth } from "../contexts/auth-context";
 import { MdExplore, MdHome, MdBookmarks, MdLogout } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import "./sideBar.css";
 
 const SideBar = () => {
   const { userData } = useAuth();
   const getActiveStyle = ({isActive})=>({
     fontWeight: isActive && "bold"
   })
+  const navigate = useNavigate();
   return (
     <div className="sidebar">
-      <nav >
         <NavLink to="/" className="home" style={getActiveStyle}>
           <MdHome />
         </NavLink>
@@ -20,10 +21,10 @@ const SideBar = () => {
         <NavLink to="/bookmarks"className="bookmarks" style={getActiveStyle}>
           <MdBookmarks />
         </NavLink>
-        <NavLink to="/logout" className="logout" style={getActiveStyle}>
+        <NavLink to="/login" className="logout" style={getActiveStyle} onClick={()=>localStorage.setItem("user", "")}>
           <MdLogout />
         </NavLink>
-        <NavLink to="/profile"  className="profile">
+        <div   className="profile" onClick={()=>navigate(`/user/profile/${userData.username}`)}>
             <img src={userData.avatarURL} alt="pc" width={30} height={30} />
             <span>
               <b>
@@ -32,8 +33,8 @@ const SideBar = () => {
               <p>@{userData.username}</p>
             </span>
           
-        </NavLink>
-      </nav>
+        </div>
+     
     </div>
   );
 };

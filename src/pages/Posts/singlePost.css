@@ -1,0 +1,81 @@
+.single-post{
+    display: flex;
+    flex-direction: column;
+}
+.single-post .postCard{
+    box-shadow: none;
+}
+.post-details{
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    width: 640px;
+    margin-left: 320px;
+    margin-right: 0px;   
+}
+.noOfComments{
+    border-top: 1px solid var(--light-grey);
+    border-bottom: 1px solid var(--light-grey);
+    text-align: left;
+    border-width: 640px;
+}
+.nav-button{
+    text-align: left;
+  padding-bottom: 20px;
+  margin-bottom: 0px;
+  border-bottom: 1px solid var(--light-grey);
+  font-size: 16px;
+  color: var(--primary-color);
+}
+.nav-button button{
+    border: none;
+    color: var(--light-black);
+    background-color: transparent;
+    font-size: 16px;
+}
+.comments-details{
+    width: 640px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 320px;
+    margin-right: 0px;
+}
+.comments-details p{
+    text-align: left;
+    
+}
+.comments-details .avatarAndName{
+    display: flex;
+    margin: 20px;
+    font-size: 12px;
+  
+}
+.comments-details .avatarAndName p{
+    margin: 0;
+    color: var(--light-grey);
+}
+.comments-details .avatarAndName img{
+    margin: 0px 5px;
+    border-radius: 5rem;
+}
+.comments-details .text{
+   margin-left: 80px;
+}
+.reply{
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.reply img{
+    border-radius: 5rem;
+}
+.reply input{
+   border: none;
+    width: 70vh;
+}
+.reply input:focus{
+    outline: none;
+}
+.reply .post{
+    padding: 0.5rem 1rem;
+}

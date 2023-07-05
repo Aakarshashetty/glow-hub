@@ -1,6 +1,7 @@
   .content{   
          display: flex;
          justify-content: space-between;
+         position: relative;
   }
   header{
     grid-area: h;
@@ -13,51 +14,61 @@
     z-index: 1;
     left: 0;
     right: 0;
-    background-color: var(--primary-color);
+    /* left: 290px;
+    width: 722px; */
+    /* background-color: var(--primary-color); */
+    background: rgba(0,0,0,.5);
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    color: var(--secondary-color);
+    color: var(--primary-color);
+  }
+  header h2{
+    margin: 10px 70px;
+    font-size: 22px;
+  }
+  header input{
+    border: none;
+    background-color: transparent;
+    color: var(--primary-color);
+    padding: 0.4rem 0rem;
+    border-radius: 5px;
+    margin: 0px 10px;
+  }
+  header .input{
+    margin: 10px 70px;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header input:focus{
+    outline: none;
+  }
+  header input::placeholder{
+    color: var(--primary-color);
+  }
+  header .input .search-icon{
+    margin: 5px 0px;
+    margin-left: 10px;
+    font-size: 20px;
   }
   main{
     grid-area: m;
-    width: 100%;
-    margin-top: 70px;
+    width: 350px;
+    margin-top: 49px;
+    border-right: 1px solid var(--light-grey);
+    border-left: 1px solid var(--light-grey);
   }
   aside{
     display: none;
-    
+    padding: 1rem 0rem;
   }
   aside p{
     margin: 0;
   }
-  .sidebar{
-    margin-top: 60px;
-    position: fixed;
-    z-index: 1;
-    background-color: whitesmoke;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 6vh;
-    text-align: right;
-  }
-  .sidebar nav{ 
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    font-size: 20px;
-    margin: 5px;
-  }
-  .sidebar nav div{
-    cursor: pointer;
-  }
-  .sidebar span{
-    color: transparent;
-  }
-  .sidebar nav img{
-    border-radius: 5rem;
-  }
+  
   .postbutton:hover{
     background-color: var(--primary-color);
   color: var(--secondary-color);
@@ -67,6 +78,9 @@
   }
   textarea{
     border: none;
+    resize: none;
+    width: 70vh;
+    margin: 5px 10px;
   }
   textarea:focus{
     outline: none;
@@ -76,17 +90,17 @@
     justify-content: space-between;
     height: 10vh;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    padding: 0.3rem 0rem;
+    padding: 0.7rem 0rem;
     border-radius: 10px;
+    margin: auto;
   }
   .newpost img{
     margin-left: 20px;
     border-radius: 5rem;
+    align-self: flex-start;
   }
-  textarea{
-    resize: none;
-    width: 70vh;
-  }
+  
+   
   .file{
     align-self: flex-end;
     width: 10vh;
@@ -105,6 +119,7 @@
   .latestAndTrending{
     display: flex;
     justify-content: flex-end;
+    padding: 0.5rem;
   }
   .latestAndTrending button{
     margin: 10px;
@@ -115,129 +130,40 @@
     text-align: center;
   }
   @media (min-width:768px){
-    .sidebar{
-      position: relative;
-      width: 10%;
-      text-align: right;
-      bottom: 0;
-      top: 0;
-      height: 100%;
-    }
-    .sidebar nav{
-      position: fixed;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      z-index: 1;
-      left: 30px;
-      padding: 1rem 0rem ;
-      height: 100%;
-    }
-    .sidebar nav div{
-      margin: 10px 0px;
-    }
-    .sidebar nav .profile{
-      text-align: left;
-    }
     main{
-      margin-right: 230px;
+      width: 700px;
+      margin-left: 150px;
     }
-  }
-  @media (min-width:800px){
-    main{
-      margin-right: 150px;
-    }
-  }
-  @media (min-width:900px){
-    main{
-      margin-right: 150px;
-    }
-  }
-  @media (min-width:940px){
-    main{
-      margin-right: 150px;
+    aside{
+      display: none;
+      
     }
   }
   @media (min-width:1024px){
-    .sidebar{
-      position: relative;
-      width: 30%;
-      text-align: right;
-      height: 100%;
-    }
-    .sidebar nav{
-      position: fixed;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      z-index: 1;
-      left: 100px;
-      padding: 1rem 0rem ;
-      height: 100%;
-    }
     
-    .sidebar nav div{
-      margin: 10px;
-      
+    main{
+      width: 720px;
+      margin-left: 290px;
+      margin-right: 20px;
     }
-    .sidebar nav .home::after{
-      content: " Home";
-    }
-    .sidebar nav .explore::after{
-      content: " Explore";
-    }
-    .sidebar nav .bookmarks::after{
-      content: " Bookmarks";
-    }
-    .sidebar nav .logout::after{
-      content: " Logout";
-    }
-    .sidebar nav .profile{
-      align-self: flex-start;
-      margin-right: 40px;
-      margin-top: 350px;
-      display: flex;
-      border-radius: 10px;
-      padding: 0.3rem;
-      cursor: pointer;
-    }
-    
-    .sidebar span{
-      font-size: 14px;
-      border: 1px solid transparent;
-      border-radius: 10px;
-      text-align: left;
-      padding: 0rem 0.3rem;
-      margin: 0px 5px;
-      color: var(--light-black);
-    }
-    .sidebar nav .profile:hover{
-      background-color: var(--secondary-color);
-      color: var(--primary-color);
-    }
-    .sidebar span p{
-      margin: 0;
-    }
+  }
+  @media (min-width:1130px){
     aside{
       grid-area: a;
       display: flex;
       flex-direction: column;
       width: 30%;
     }
-    main{
-      width: 700px;
-      margin-right: 380px;
-    }
-  }
   aside{
     position: fixed;
     z-index: 1;
     right: 30px;
     margin-top: 70px;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
     height: 300px;
     width: 320px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
+    
   }
   aside .suggestedUsers{
     margin: 10px auto;
@@ -249,6 +175,7 @@
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     margin: 10px 10px;
     border-radius: 5px;
+    
     height: 120px;
     display: flex;
     flex-direction: column;
@@ -264,6 +191,7 @@
   }
   aside .suggestedUsers li h3{
     cursor: pointer;
+    margin: 10px 0px;
   }
   aside .suggestedUsers li h3:hover{
     color: var(--black);
@@ -273,10 +201,13 @@
   }
   aside .suggestedUsers li p{
     margin: 0;
+    margin-left: 10px;
+    color: var(--light-grey);
   }
   aside .suggestedUsers li .follow{
-    margin-top: 10px;
+    margin-top: 20px;
     border: 1px solid transparent;
     align-self: center;
     
   }
+}

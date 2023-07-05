@@ -9,12 +9,15 @@ import { getDate } from "../../backend/utils/getDate";
 import { useAuth } from "../../contexts/auth-context";
 import { usePosts } from "../../contexts/post-context";
 import "./posts.css";
+import "reactjs-popup/dist/index.css";
+import Loader from "../../Components/Loader";
+
 
 const PostList = ({ posts }) => {
   // const [showCommentBox,setShowCommentBox] = useState(false)
   const [showEditBox, setShowEditBox] = useState(false);
   const [postToBeEdited, setPostToBeEdited] = useState({});
-  const [showEditAndDelete,setShowEditAndDelete] = useState(false)
+  const [showEditAndDelete, setShowEditAndDelete] = useState(false);
   const navigate = useNavigate();
   const {
     likePostFunction,
@@ -24,6 +27,7 @@ const PostList = ({ posts }) => {
     editPost,
     deletePost,
     postData,
+    isLoading
   } = usePosts();
   const {
     userData: { bookmarks },
@@ -39,34 +43,53 @@ const PostList = ({ posts }) => {
     createdAt,
   } = posts;
 
-  const { firstName, lastName,avatarURL } = postData.users.find(
+  const { firstName, lastName, avatarURL } = postData?.users?.find(
     (user) => user.username === username
   );
+
   return (
-    <div key={_id}>
-      <li key={_id} style={{ listStyle: "none" }} onClick={()=>setShowEditAndDelete(false)} >
+    
+    <div key={_id} className="post">
+      {isLoading && <Loader/>  }
+      <li key={_id} style={{ listStyle: "none" }}>
         <div className="postCard">
           <div className="userAvatar">
             <img src={avatarURL} alt="pc" width={30} height={30} />
           </div>
           <div>
-          <HiOutlineDotsHorizontal onClick={()=>setShowEditAndDelete(!showEditAndDelete)} className="menuButton"/>
-         { showEditAndDelete && <div className="editAndDelete">
-            <button
-              onClick={() => {
-                setPostToBeEdited(posts);
-                setShowEditBox(true);
-              }}
-              className="editButton"
-            >
-             <MdOutlineModeEditOutline/>{" "}Edit
-            </button>
-            <button onClick={() => deletePost(_id)}><MdOutlineDelete/>{" "}Delete</button>
-          </div>}
+            <HiOutlineDotsHorizontal
+              onClick={() => setShowEditAndDelete(!showEditAndDelete)}
+              className="menuButton"
+            />
+            {showEditAndDelete && (
+              <div className="editAndDelete">
+               
+                <button
+                  onClick={() => {
+                    setPostToBeEdited(posts);
+                    setShowEditBox(true);
+                  }}
+                  className="editButton"
+                >
+                  <MdOutlineModeEditOutline /> Edit
+                </button>
+                <button
+                  onClick={() => deletePost(_id)}
+                  className="deleteButton"
+                >
+                  <MdOutlineDelete /> Delete
+                </button>
+              </div>
+            )}
           </div>
           <div className="postDetails">
             <div className="userNameAndTimestamp">
-              <h3 onClick={() => {navigate(`/user/profile/${username}`);window.scroll(0,0)}}>
+              <h3
+                onClick={() => {
+                  navigate(`/user/profile/${username}`);
+                  window.scroll(0, 0);
+                }}
+              >
                 {firstName} {lastName}
               </h3>
               <p className="createdAt"> . {getDate(createdAt)}</p>
@@ -74,8 +97,8 @@ const PostList = ({ posts }) => {
 
             <p className="username">@ {username}</p>
 
-            <p onClick={() => navigate(`/post/${_id}`)}>{content}</p>
-            <img src={image} alt={_id}  />
+            <p onClick={() => {navigate(`/post/${_id}`);window.scroll(0,0)}}>{content}</p>
+            <img src={image} alt={_id} />
             <div className="buttons">
               <button
                 onClick={() => {
@@ -83,20 +106,19 @@ const PostList = ({ posts }) => {
                     ? dislikePostFunction(_id)
                     : likePostFunction(_id);
                 }}
-                
               >
                 {likedBy.find((post) => post.username === username) ? (
-                  <FcLike className="likebutton"/>
+                  <FcLike className="likebutton" />
                 ) : (
-                  <FcLikePlaceholder className="likebutton"/>
-                )}
-                {" "}{likeCount}
+                  <FcLikePlaceholder className="likebutton" />
+                )}{" "}
+                {likeCount}
               </button>
-             
+
               <button>
                 <FaRegComment />
               </button>
-              {comments.length > 0 && comments.length}
+              {comments?.length > 0 && comments?.length}
               <button
                 onClick={
                   bookmarks.find((postId) => postId === _id)
@@ -115,7 +137,10 @@ const PostList = ({ posts }) => {
         </div>
       </li>
       {showEditBox && (
-        <div>
+        <div className="editModal">
+        <div className="editContent">
+          <label className="text">
+          <img src={avatarURL} alt="pc" width={40} height={40} className="avatar"/>
           <textarea
             type="text"
             defaultValue={postToBeEdited.content}
@@ -123,12 +148,15 @@ const PostList = ({ posts }) => {
               setPostToBeEdited({ ...postToBeEdited, content: e.target.value })
             }
           />
+          </label>
           <img
             src={postToBeEdited.image}
             alt={postToBeEdited._id}
             height={200}
             width={200}
+            className="image"
           />
+          <div className="editButtons">
           <button
             onClick={() => {
               editPost(postToBeEdited);
@@ -137,7 +165,9 @@ const PostList = ({ posts }) => {
           >
             Save
           </button>
-          <button onClick={() => setShowEditBox(false)}>Cancel</button>
+          <button onClick={() => setShowEditBox(false)} className="cancel">Cancel</button>
+          </div>
+        </div>
         </div>
       )}
     </div>

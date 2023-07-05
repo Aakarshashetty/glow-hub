@@ -33,6 +33,12 @@ export const postReducer = (postData, { type, payload }) => {
         filterBy: payload,
       };
     }
+    case "EDIT_USER":{
+      return{
+        ...postData,
+        users: postData.users.map(user => user.username === payload.username ? payload : user)
+      }
+    }
     default:
       return postData;
   }

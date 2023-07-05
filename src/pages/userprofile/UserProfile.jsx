@@ -4,23 +4,27 @@ import { usePosts } from "../../contexts/post-context";
 import PostList from "../Posts/PostList";
 import SideBar from "../../Components/SideBar";
 import { useAuth } from "../../contexts/auth-context";
-import { BsArrowLeft,BsPersonFillAdd,BsPersonFillDash } from "react-icons/bs";
-import {FiMessageSquare,FiLogOut} from "react-icons/fi";
-import {FaUserEdit} from "react-icons/fa";
+import { BsArrowLeft, BsPersonFillAdd, BsPersonFillDash } from "react-icons/bs";
+import { FiMessageSquare, FiLogOut } from "react-icons/fi";
+import { FaUserEdit } from "react-icons/fa";
 import "./userProfile.css";
 import SuggestedUsers from "../../Components/SuggestedUsers";
+import SelectAvatar from "./SelectAvatar";
+import Header from "../../Components/Header";
 
 const UserProfile = () => {
   const { userName } = useParams();
-  const { postData, unFollowUser, followUser } = usePosts();
-  const { userData,showEditProfile,setShowEditProfile } = useAuth();
+  const { postData, unFollowUser, followUser,editUser } = usePosts();
+  const { userData, showEditProfile, setShowEditProfile } = useAuth();
+  
   const user = postData?.users.find(({ username }) => username === userName);
   const userPosts = postData?.posts.filter(
     ({ username }) => username === userName
   );
   const navigate = useNavigate();
   const [showFollowing, setShowFollowing] = useState(false);
-
+  const [showEditUser, setShowEditUser] = useState(false);
+  const [editedUser, setEditedUser] = useState({});
   const {
     _id,
     firstName,
@@ -31,7 +35,7 @@ const UserProfile = () => {
     following,
     followers,
   } = user;
-
+  const [userAvatar,setUserAvatar] = useState(avatarURL)
   useEffect(() => {
     function checkLoggedUser() {
       return (
@@ -43,6 +47,7 @@ const UserProfile = () => {
   }, [username]);
   return (
     <div className="profile">
+      <Header/>
       <SideBar />
       <div className="userprofile">
         <div className="userprofile-user">
@@ -68,10 +73,10 @@ const UserProfile = () => {
               <small>@{username}</small>
               <p>{bio}</p>
               <div className="userFollwingAnsFollowers">
-              <p> {followers?.length} Followers </p>
-              <p onClick={() => setShowFollowing(true)}>
-              {following?.length} Following 
-              </p>
+                <p> {followers?.length} Followers </p>
+                <p onClick={() => setShowFollowing(true)}>
+                  {following?.length} Following
+                </p>
               </div>
               {showFollowing && (
                 <div>
@@ -93,8 +98,17 @@ const UserProfile = () => {
 
           {showEditProfile ? (
             <div className="profileButtons">
-              <button><FaUserEdit/></button>
-              <button><FiLogOut/></button>
+              <button
+                onClick={() => {
+                  setEditedUser(user);
+                  setShowEditUser(true);
+                }}
+              >
+                <FaUserEdit />
+              </button>
+              <button>
+                <FiLogOut />
+              </button>
             </div>
           ) : (
             <div className="profileButtons">
@@ -109,11 +123,15 @@ const UserProfile = () => {
               >
                 {postData?.userDetails?.following?.find(
                   (user) => user.username === username
-                )
-                  ? <BsPersonFillDash/>
-                  : <BsPersonFillAdd/>}
+                ) ? (
+                  <BsPersonFillDash />
+                ) : (
+                  <BsPersonFillAdd />
+                )}
               </button>
-              <button><FiMessageSquare/></button>
+              <button>
+                <FiMessageSquare />
+              </button>
             </div>
           )}
         </div>
@@ -126,6 +144,47 @@ const UserProfile = () => {
             );
           })}
         </div>
+        {showEditUser && (
+          <div className="editModal">
+            
+            <div className="editContent">
+            <h2>Edit Profile</h2>
+              <h3>Select Your Avatar</h3>
+             <SelectAvatar userAvatar={userAvatar} setUserAvatar={setUserAvatar}/>
+             <label className="profileImage">
+              Profile:
+             <img src={userAvatar} alt="userAvatar" width={90} height={90}/>
+             </label>
+            <label>
+              <div>
+                Name:
+                </div>
+              <input
+                type="text"
+                defaultValue={editedUser.firstName + " " + editedUser.lastName}
+              />
+            </label>
+            <label>
+              <div>
+                Portfolio URL:
+                </div>
+              <input type="text" />
+            </label>
+            <label>
+              <div>
+                Bio:
+                </div>
+              <input type="text" defaultValue={editedUser.bio} 
+              onChange={(e)=>setEditedUser({...editedUser,bio:e.target.value,avatarURL:userAvatar})}
+              />
+            </label>
+            <div className=".editButtons">
+            <button onClick={()=>{editUser(editedUser);setShowEditUser(!showEditUser)}} className="saveButton">Save</button>
+            <button onClick={()=>{setShowEditUser(!showEditUser);setUserAvatar(avatarURL)}} className="cancelButton">Cancel</button>
+            </div>
+            </div>
+          </div>
+        )}
       </div>
       <SuggestedUsers />
     </div>

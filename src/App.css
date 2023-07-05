@@ -1,15 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 :root {
-  --primary-color: #5e503f;
-  --secondary-color: #c6ac8f;
+  /* --primary-color: #5e503f;
+  --secondary-color: #c6ac8f; */
+  --primary-color:#673ab7 ;
+  --secondary-color:#7e57c2;
   --black: #0a0908;
   --light-black: #22333b;
   --light-grey: #adb5bd;
 }
 
 body {
-
+  /* background-color: #222E2A; */
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
   text-align: center;
@@ -22,7 +24,7 @@ button {
   cursor: pointer;
   font-family: 'Roboto', sans-serif;
   background-color: var(--primary-color);
-  color: var(--secondary-color);
+  color: white;
   border-radius: 5px;
 }
 a{
@@ -40,10 +42,11 @@ button:disabled{
 }
 button:hover {
   background-color: var(--secondary-color);
-  color: var(--primary-color);
+  /* color: var(--primary-color); */
+  color: white;
 }
 
-input {
+input, input::placeholder,textarea {
   font-family: 'Roboto', sans-serif;
 }
 
@@ -93,11 +96,42 @@ input {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--secondary-color);
+  background: var(--light-grey);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
+  background: var(--secondary-color);
   border-radius: 5px;
 
+}
+@media (min-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  h3,
+  p,
+  button {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  h3,
+  p,
+  button {
+    font-size: 1rem;
+  }
 }

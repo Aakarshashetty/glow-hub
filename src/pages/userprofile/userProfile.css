@@ -6,7 +6,8 @@
     display: flex;
     flex-direction: column;
     width: 700px;
-    margin-right: 370px;
+    margin-left: 40px;
+    margin-right: 70px;
 }
 .profile .userDetails{
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -86,4 +87,74 @@
     margin: 0;
     text-align: left;
     color: var(--light-grey);
+}
+.editContent{
+    height: 600px;
+}
+.editContent img{
+    border-radius: 5rem;
+}
+.selectAvatar{
+    display: flex;
+    justify-content: space-between;
+}
+.selectAvatar div{
+    margin: 10px 20px;
+    cursor: pointer;
+}
+.selectAvatar div img{
+    border-radius: 5rem;
+}
+h2,h3{
+    margin: 0;
+    padding: 0;
+}
+.editContent label{
+    align-self: flex-start;
+    margin: 0px 60px;
+}
+.editContent label input{
+    height: 5vh;
+    width: 60vh;
+}
+.editContent label input:focus{
+    outline:  none
+    
+}
+.editContent label div{
+    text-align: left;
+    font-size: 12px;
+    margin: 5px 0px;
+    color: var(--light-black);
+}
+.editContent .profileImage{
+    align-self: center;
+    
+}
+.editContent .editButtons{
+    display: flex;
+    justify-content: flex-end;
+}
+.cancelButton{
+position: absolute;
+}
+@media (min-width:768px){
+    .userprofile{
+        margin-left: 200px;
+    }
+}
+@media (min-width:770px){
+    .userprofile{
+        margin-left: 120px;
+    }
+}
+@media (min-width:800px){
+    .userprofile{
+        margin-left: 120px;
+    }
+}
+@media (min-width:1024px){
+    .userprofile{
+        margin-left: 300px;
+    }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./home.css";
 import { usePosts } from "../../contexts/post-context";
 import { useAuth } from "../../contexts/auth-context";
@@ -7,10 +7,13 @@ import SideBar from "../../Components/SideBar";
 import SuggestedUsers from "../../Components/SuggestedUsers";
 import { LuImagePlus } from "react-icons/lu";
 import { uploadImage } from "../../backend/utils/uploadImage";
-import {BiTrendingUp} from "react-icons/bi"
+import {BiTrendingUp} from "react-icons/bi";
+
+import Loader from "../../Components/Loader";
+import Header from "../../Components/Header";
 
 const Home = () => {
-  const { postData, createNewPost, postDispatcher } = usePosts();
+  const { postData, createNewPost, postDispatcher,isLoading,getPosts,getUsers } = usePosts();
   const { userData } = useAuth();
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
@@ -44,10 +47,18 @@ const Home = () => {
     setImage(null);
   };
 
+  useEffect(()=>{
+    getPosts();
+    getUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
   return (
+    <div>
+      
+     <Header/>
     <div className="content">
       <SideBar />
-      <main>
+       <main>
         <div>
           <div
             style={{  margin: "10px" }}
@@ -111,12 +122,17 @@ const Home = () => {
               <BiTrendingUp className="trending"/> Trending
             </button>
           </div>
+          <div style={{height:"1px",backgroundColor:"#adb5bd"}}></div>
+          {isLoading && <Loader/> }
           {getFilteredPosts().map((posts) => (
             <PostList posts={posts} key={posts.id} />
           ))}
         </div>
+
       </main>
-      <SuggestedUsers />
+     {isLoading ? <Loader/> : <SuggestedUsers />}
+    </div>
+
     </div>
   );
 };

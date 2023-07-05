@@ -1,9 +1,8 @@
 import {
   createContext,
   useContext,
-  useEffect,
   useReducer,
-  useState,
+  
 } from "react";
 import { postReducer } from "../reducers/postReducer";
 import axios from "axios";
@@ -12,36 +11,43 @@ import { useAuth } from "./auth-context";
 const PostContext = createContext();
 
 export const PostContextProvider = ({ children }) => {
-  const { setUserData, userData } = useAuth();
+  const { setUserData, userData,isLoading,setIsLoading } = useAuth();
   const encodedToken = localStorage.getItem("encodedToken");
   const [postData, postDispatcher] = useReducer(postReducer, {
     users: [],
     userDetails: {},
     posts: [],
     bookmarks: [],
-    filterBy:""
+    filterBy: "",
   });
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        setIsLoading(true);
-        const postData = await axios.get("/api/posts");
-        (postData.status === 200 || postData.status === 201) &&
-          postDispatcher({ type: "GET_POSTS", payload: postData.data.posts });
-        const users = await axios.get("/api/users");
-        (users.status === 200 || users.status === 201) &&
-          postDispatcher({ type: "GET_USERS", payload: users.data.users });
-      } catch (e) {
-        console.error("couldn't able to get posts data");
-      } finally {
+  
+  const getPosts = async()=>{
+    try {
+      setIsLoading(true);
+      const postData = await axios.get("/api/posts");
+      if(postData.status === 200 || postData.status === 201) {
+        postDispatcher({ type: "GET_POSTS", payload: postData.data.posts });
         setIsLoading(false);
+      } 
+     
+    } catch (e) {
+      console.error("couldn't able to get posts data");
+    } finally {
+     
+    }
+  }
+  const getUsers = async() => {
+    try{
+      const users = await axios.get("/api/users");
+      if(users.status === 200 || users.status === 201) {
+        postDispatcher({ type: "GET_USERS", payload: users.data.users });
+        setIsLoading(false)
       }
-    })();
-  }, []);
+    }catch(e){
 
+    }
+  }
+  
   const likePostFunction = async (postId) => {
     try {
       const response = await axios.post(
@@ -104,18 +110,18 @@ export const PostContextProvider = ({ children }) => {
     }
   };
 
-  const createNewPost = async (input,url) => {
-    console.log(url)
+  const createNewPost = async (input, url) => {
+    console.log(url);
     try {
       const response = await axios.post(
         "/api/posts/",
-        { postData: { content: input,image:url } },
+        { postData: { content: input, image: url } },
         { headers: { authorization: encodedToken } }
       );
       (response.status === 200 || response.status === 201) &&
         postDispatcher({ type: "GET_POSTS", payload: response.data.posts });
     } catch (e) {
-      console.error("error",e);
+      console.error("error", e);
     }
   };
 
@@ -189,9 +195,36 @@ export const PostContextProvider = ({ children }) => {
       console.error(e);
     }
   };
+
+  const editUser = async (userData) => {
+    try {
+      const response =
+        await axios.post(
+          "/api/users/edit",
+          { userData },
+          {
+            headers: {
+              authorization: encodedToken,
+            },
+          }
+        );
+        
+        (response.status === 200 || response.status === 201) &&
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ user: response.data.user })
+        );
+      postDispatcher({ type: "ADD_USER_DETAILS", payload: response.data.user });
+      postDispatcher({type: "EDIT_USER",payload:response.data.user})
+    } catch (e) {
+      console.error(e);
+    }
+  };
   return (
     <PostContext.Provider
       value={{
+        getPosts,
+        getUsers,
         postData,
         postDispatcher,
         isLoading,
@@ -204,6 +237,7 @@ export const PostContextProvider = ({ children }) => {
         deletePost,
         followUser,
         unFollowUser,
+        editUser,
       }}
     >
       {children}

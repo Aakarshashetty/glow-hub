@@ -23,7 +23,7 @@ export const posts = [
     },
     comments: [],
     username: "CleanBeautyRevolution",
-    createdAt: new Date(2023,6,7),
+    createdAt: "2023-06-07",
     updatedAt: formatDate(),
   },
   {
@@ -40,8 +40,12 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
+        firstName:"Lily",
+        lastName:"Martin",
+        avatarURL:"https://res.cloudinary.com/dbiove79b/image/upload/v1687451296/glow-hub/chris-jarvis-0Pf7fKRtDPI-unsplash_h5hipe.jpg",
         username: "CleanBeautyRevolution",
         text: "I recently tried a collagen-infused sheet mask and it worked wonders! My skin felt so plump and firm. Definitely worth a try! 💆",
+        createdAt:"2023-09-17"
       },
     ],
     username: "RadiantSkinJourney",
@@ -191,12 +195,20 @@ export const posts = [
       {
         _id: uuid(),
         username: "MindfulSkincare",
+        firstName:"Alex",
+        lastName:"Wilson",
+        avatarURL:"https://res.cloudinary.com/dbiove79b/image/upload/v1687451294/glow-hub/20309c_19a43effccee42cb874090567a72dfc3_mv2_dny5ql.jpg",
         text: "Salicylic acid has been a game-changer for me too! It's great for keeping breakouts at bay. I use a cleanser with salicylic acid, and it works wonders. 🙌",
+        createdAt:"2023-05-16"
       },
       {
         _id: uuid(),
+        firstName:"Sarah",
+        lastName:"Thompson",
+        avatarURL:"https://res.cloudinary.com/dbiove79b/image/upload/v1687451296/glow-hub/alexandra-kirr-Q_MYbs7KdcU-unsplash_nwq6zc.jpg",
         username: "RadiantSkinJourney",
         text: "I've been using a spot treatment with salicylic acid, and it's been effective in reducing the size of my pimples overnight. Definitely recommend giving it a try! 💪",
+        createdAt:"2023-05-17"
       },
     ],
     username: "BeautyInsideOut",

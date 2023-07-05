@@ -6,6 +6,7 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [userData, setUserData] = useState(localStorage?.user);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [showEditProfile, setShowEditProfile] = useState(false);
   const userLoginFunction = async (userName, userPassword) => {
     try {
@@ -50,6 +51,8 @@ export const AuthContextProvider = ({ children }) => {
         userData,
         isLoggedIn,
         setIsLoggedIn,
+        isLoading,
+        setIsLoading,
         newUserSignUpFunction,
         setUserData,
         showEditProfile,
