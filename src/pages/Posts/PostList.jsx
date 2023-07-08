@@ -165,7 +165,7 @@ const PostList = ({ posts }) => {
           >
             Save
           </button>
-          <button onClick={() => setShowEditBox(false)} className="cancel">Cancel</button>
+          <button onClick={() => {setShowEditBox(false);setShowEditAndDelete(false)}} className="cancel">Cancel</button>
           </div>
         </div>
         </div>

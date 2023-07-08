@@ -1,10 +1,15 @@
 .login{
    padding: 95px 0px;
    display: flex;
-   justify-content: space-around;
+   flex-direction: column;
    /* background-color: wheat; */
    height: 100%;
-  
+}
+@media (min-width:1024px){
+   .login{
+      flex-direction: row;
+      justify-content: space-around;
+   }
 }
 .login-inputs{
    display: flex;

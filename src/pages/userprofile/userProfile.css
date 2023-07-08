@@ -9,6 +9,20 @@
     margin-left: 40px;
     margin-right: 70px;
 }
+.user span{
+    margin: 0px;
+    margin-top: 10px;
+}
+.user span .portfolio-url{
+    margin: 0px 7px;
+    color: var(--primary-color);
+}
+.user span .portfolio-url:hover{
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-weight: normal;
+}
 .profile .userDetails{
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     padding: 1rem 0.5rem;
@@ -91,6 +105,52 @@
 .editContent{
     height: 600px;
 }
+.followedUser{
+    width: 450px;
+    height: auto;
+    align-items: flex-start;
+    position: relative;
+}
+.followedUser .heading{
+    justify-content: space-around;
+}
+.editModal .followedUser .heading h2{
+    padding: 1rem;
+}
+.followedUser .cancel{
+    border: none;
+    font-size: 24px;
+    margin: 10px 20px;
+    margin-left: 240px;
+}
+.followedUser .cancel:hover{
+    content: none;
+    background-color: transparent;
+    color: var(--primary-color);
+}
+.followedUser li{
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+}
+
+.followedUser div{
+    display: flex;
+    
+}
+.followedUser div span p{
+    margin: 0;
+    color: var(--light-grey);
+}
+.followedUser div span h3:hover{
+    color: var(--black);
+    cursor: pointer;
+}
+.editContent{
+    position: relative;
+}
 .editContent img{
     border-radius: 5rem;
 }
@@ -109,34 +169,49 @@ h2,h3{
     margin: 0;
     padding: 0;
 }
-.editContent label{
+
+.userEditModal .editContent label{
     align-self: flex-start;
     margin: 0px 60px;
 }
-.editContent label input{
+.userEditModal .editContent label input{
     height: 5vh;
     width: 60vh;
 }
-.editContent label input:focus{
+.userEditModal .editContent label input:focus{
     outline:  none
     
 }
-.editContent label div{
+.userEditModal .editContent label div{
     text-align: left;
     font-size: 12px;
     margin: 5px 0px;
     color: var(--light-black);
 }
-.editContent .profileImage{
+.userEditModal .editContent .profileImage{
     align-self: center;
     
 }
-.editContent .editButtons{
+.userEditModal .editContent .buttons{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
+    align-self: flex-end;
 }
 .cancelButton{
 position: absolute;
+top: 20px;
+border: none;
+background-color: transparent;
+color: var(--primary-color);
+font-size: 24px;
+}
+.cancelButton:hover{
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--primary-color);
+}
+.saveButton{
+    margin: 20px;
 }
 @media (min-width:768px){
     .userprofile{

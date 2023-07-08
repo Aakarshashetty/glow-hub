@@ -27,7 +27,7 @@ const SuggestedUsers = () => {
                   {firstName} {lastName}
                 </h3>
                 <p>@{username}</p>
-                <button onClick={() => followUser(_id)} className="follow">
+                <button onClick={() => {followUser(_id)}} className="follow">
                   Follow
                 </button>
               </li>

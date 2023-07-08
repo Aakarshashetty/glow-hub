@@ -1,7 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useState } from "react";
-import toast from 'react-hot-toast';
-
+import toast from "react-hot-toast";
 
 const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
@@ -19,7 +18,10 @@ export const AuthContextProvider = ({ children }) => {
       localStorage.setItem("encodedToken", encodedToken);
       localStorage.setItem("user", JSON.stringify({ user: foundUser }));
       setUserData(foundUser);
-      toast("Welcome back! Let the scrolling begin!",{icon:'🚀'});
+      toast("Welcome back! Let the scrolling begin!", {
+        icon: "🚀",
+        duration: 2500,
+      });
     } catch (e) {
       console.error("Something went wrong!");
     }
@@ -42,13 +44,13 @@ export const AuthContextProvider = ({ children }) => {
       localStorage.setItem("encodedToken", encodedToken);
       localStorage.setItem("user", JSON.stringify({ user: createdUser }));
       setUserData(createdUser);
-      toast('Welcome to the community! Enjoy your stay! ', {
-        icon: '🌟',
+      toast("Welcome to the community! Enjoy your stay! ", {
+        icon: "🌟",
+        duration: 2500,
       });
     } catch (e) {}
   };
 
-  
   return (
     <AuthContext.Provider
       value={{
@@ -61,7 +63,7 @@ export const AuthContextProvider = ({ children }) => {
         newUserSignUpFunction,
         setUserData,
         showEditProfile,
-        setShowEditProfile
+        setShowEditProfile,
       }}
     >
       {children}

@@ -85,6 +85,7 @@ export const PostContextProvider = ({ children }) => {
         setUserData({ ...userData, bookmarks: response.data.bookmarks });
       toast("Bookmark added! Keep your favorite posts within reach!", {
         icon: "📌",
+        duration: 2500,
       });
     } catch (e) {
       console.error(e);
@@ -101,6 +102,7 @@ export const PostContextProvider = ({ children }) => {
         setUserData({ ...userData, bookmarks: response.data.bookmarks });
       toast("Post unbookmarked! Make room for fresh discoveries!", {
         icon: "📌",
+        duration: 2500,
       });
     } catch (e) {
       console.error(e);
@@ -119,6 +121,7 @@ export const PostContextProvider = ({ children }) => {
         postDispatcher({ type: "GET_POSTS", payload: response.data.posts });
       toast("Post created! Share your thoughts with the world!", {
         icon: "📝",
+        duration: 2500,
       });
     } catch (e) {
       console.error("error", e);
@@ -136,7 +139,10 @@ export const PostContextProvider = ({ children }) => {
       );
       (response.status === 200 || response.status === 201) &&
         postDispatcher({ type: "GET_POSTS", payload: response.data.posts });
-      toast("Post updated! Fine-tuning the masterpiece!", { icon: "🖊️" });
+      toast("Post updated! Fine-tuning the masterpiece!", {
+        icon: "🖊️",
+        duration: 2500,
+      });
     } catch (e) {
       console.error(e);
     }
@@ -149,7 +155,10 @@ export const PostContextProvider = ({ children }) => {
       });
       (response.status === 200 || response.status === 201) &&
         postDispatcher({ type: "GET_POSTS", payload: response.data.posts });
-      toast("Farewell, post! Embrace the power of letting go!", { icon: "🗑️" });
+      toast("Farewell, post! Embrace the power of letting go!", {
+        icon: "🗑️",
+        duration: 2500,
+      });
     } catch (e) {
       console.error(e);
     }
@@ -173,6 +182,7 @@ export const PostContextProvider = ({ children }) => {
       postDispatcher({ type: "ADD_USER_DETAILS", payload: response.data.user });
       toast("New connection made! Enjoy the shared experiences!", {
         icon: "🙌",
+        duration: 2500,
       });
     } catch (e) {
       console.error(e);
@@ -196,13 +206,17 @@ export const PostContextProvider = ({ children }) => {
           JSON.stringify({ user: response.data.user })
         );
       postDispatcher({ type: "ADD_USER_DETAILS", payload: response.data.user });
-      toast("Unfollowed! Freeing up your feed! ", { icon: "❌" });
+      toast("Unfollowed! Freeing up your feed! ", {
+        icon: "❌",
+        duration: 2500,
+      });
     } catch (e) {
       console.error(e);
     }
   };
 
   const editUser = async (userData) => {
+
     try {
       const response = await axios.post(
         "/api/users/edit",
@@ -221,7 +235,10 @@ export const PostContextProvider = ({ children }) => {
         );
       postDispatcher({ type: "ADD_USER_DETAILS", payload: response.data.user });
       postDispatcher({ type: "EDIT_USER", payload: response.data.user });
-      toast("Profile updated! Showcase your best self!", { icon: "📷" });
+      toast("Profile updated! Showcase your best self!", {
+        icon: "📷",
+        duration: 2500,
+      });
     } catch (e) {
       console.error(e);
     }
