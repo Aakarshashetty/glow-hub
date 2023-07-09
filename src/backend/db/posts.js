@@ -107,7 +107,7 @@ export const posts = [
     image:
       "https://res.cloudinary.com/dbiove79b/image/upload/v1686558856/glow-hub/Exfoliating_tjvrkl.webp",
     likes: {
-      likeCount: 3,
+      likeCount: 10,
       likedBy: [],
       dislikedBy: [],
     },

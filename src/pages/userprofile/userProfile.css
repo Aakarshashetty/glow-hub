@@ -2,12 +2,16 @@
     display: flex;
 }
 .userprofile{
+    padding: 1rem;
     padding-top: 4rem;
     display: flex;
     flex-direction: column;
     width: 700px;
     margin-left: 40px;
     margin-right: 70px;
+    border-right: 1px solid var(--light-grey);
+    border-left: 1px solid var(--light-grey);
+    
 }
 .user span{
     margin: 0px;

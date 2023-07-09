@@ -88,6 +88,7 @@ const Home = () => {
                     alt="inputImage"
                     height={50}
                     width={50}
+                    className="new-post-img"
                   />
 
                   <button onClick={() => setImage(null)}>close</button>

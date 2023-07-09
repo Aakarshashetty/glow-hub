@@ -49,10 +49,12 @@ const UserProfile = () => {
 
   useEffect(() => {
     setEditedUser({ ...editedUser, avatarURL: userAvatar });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userAvatar]);
   const saveHandler = async () => {
     editUser(editedUser);
     setShowEditUser(!showEditUser);
+    
   };
 
   return (
@@ -90,13 +92,13 @@ const UserProfile = () => {
               </span>
               <p>{bio}</p>
               <div className="userFollwingAnsFollowers">
-                <p> {postData?.userDetails?.followers?.length} Followers </p>
+                <p> {getUserDetails(username)?.followers?.length} Followers </p>
                 <p onClick={() => setShowFollowing(true)}>
-                  {postData?.userDetails?.following?.length} Following
+                  {getUserDetails(username)?.following?.length} Following
                 </p>
               </div>
               {showFollowing &&
-                postData?.userDetails?.following?.length > 0 && (
+                getUserDetails(username)?.following?.length > 0 && (
                   <div className="editModal">
                     <div className="followedUser editContent">
                       <div className="heading">
@@ -108,7 +110,7 @@ const UserProfile = () => {
                           <RxCross2 />
                         </button>
                       </div>
-                      {postData?.userDetails?.following?.map(
+                      {getUserDetails(username)?.following?.map(
                         ({ _id, firstName, lastName, username }) => (
                           <li key={_id} style={{ listStyle: "none" }}>
                             <div>
@@ -162,7 +164,7 @@ const UserProfile = () => {
                     (user) => user.username === username
                   )
                     ? unFollowUser(_id)
-                    : followUser(_id);
+                    : followUser(_id)
                 }}
               >
                 {postData?.userDetails?.following?.find(
@@ -243,7 +245,6 @@ const UserProfile = () => {
                     setEditedUser({
                       ...editedUser,
                       bio: e.target.value,
-                      // avatarURL:userAvatar,
                     })
                   }
                 />

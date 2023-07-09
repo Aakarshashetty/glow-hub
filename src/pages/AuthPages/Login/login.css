@@ -2,15 +2,11 @@
    padding: 95px 0px;
    display: flex;
    flex-direction: column;
-   /* background-color: wheat; */
+   justify-content: center;
+   align-items: center;
    height: 100%;
 }
-@media (min-width:1024px){
-   .login{
-      flex-direction: row;
-      justify-content: space-around;
-   }
-}
+
 .login-inputs{
    display: flex;
    flex-direction: column;
@@ -52,3 +48,9 @@
    content:" *";
    color: rgb(190, 21, 21);
  }
+ @media (min-width:1024px){
+   .login{
+      flex-direction: row;
+      justify-content: space-around;
+   }
+}

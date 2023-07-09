@@ -23,7 +23,7 @@ const SinglePost = () => {
     <div className="single-post">
       <Header/>
       <SideBar />
-
+<main>
       <div className="post-details">
         <div className="nav-button">
           <button onClick={() => navigate(-1)}>
@@ -85,6 +85,7 @@ const SinglePost = () => {
           )}
         </div>
       )}
+      </main>
       <SuggestedUsers />
     </div>
   );

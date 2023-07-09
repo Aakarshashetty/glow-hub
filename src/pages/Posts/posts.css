@@ -2,8 +2,6 @@
     width: 320px;
     text-align: left;
     padding: 0.5rem;
-    /* display: grid;
-    grid-template-columns: 2rem 1fr; */
     border-radius: 5px;
     position: relative;
     display: flex;

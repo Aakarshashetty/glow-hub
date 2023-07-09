@@ -7,11 +7,21 @@ const SuggestedUsers = () => {
   const { postData, followUser } = usePosts();
   const { userData,setShowEditProfile } = useAuth();
   const  navigate  = useNavigate();
+  const getFilteredUsers = ()=>{
+    let filteredUsers = postData.users;
+    if(postData.searchBy !== ""){
+      filteredUsers = postData.users.filter(user=>user.firstName.toLowerCase().includes(postData.searchBy)||user.lastName.toLowerCase().includes(postData.searchBy)||user.username.toLowerCase().includes(postData.searchBy))
+    }
+    else{
+      filteredUsers = postData.users
+    }
+    return filteredUsers
+  }
   return (
     <aside>
       <h3>Who to follow</h3>
       <div className="suggestedUsers">
-        {postData.users.map(
+        {getFilteredUsers()?.map(
           ({ _id, firstName, lastName, username, avatarURL }) =>
             username !== userData.username &&
             postData.userDetails?.following?.find(

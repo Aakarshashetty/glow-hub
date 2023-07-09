@@ -26,6 +26,11 @@ export const postReducer = (postData, { type, payload }) => {
       return {
         ...postData,
         userDetails: payload,
+        users: postData.users.map((user) =>
+          user.username === postData.userDetails.username
+            ? { ...payload }
+            : user
+        ),
       };
     case "FILTER_POSTS": {
       return {
@@ -33,11 +38,19 @@ export const postReducer = (postData, { type, payload }) => {
         filterBy: payload,
       };
     }
-    case "EDIT_USER":{
-      return{
+    case "EDIT_USER": {
+      return {
         ...postData,
-        users: postData.users.map(user => user.username === payload.username ? payload : user)
-      }
+        users: postData.users.map((user) =>
+          user.username === payload.username ? payload : user
+        ),
+      };
+    }
+    case "SEARCH_USER": {
+      return {
+        ...postData,
+        searchBy: payload,
+      };
     }
     default:
       return postData;

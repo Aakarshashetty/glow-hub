@@ -1,17 +1,19 @@
 .single-post{
     display: flex;
     flex-direction: column;
+    
 }
 .single-post .postCard{
     box-shadow: none;
 }
 .post-details{
-    padding-top: 4rem;
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
     width: 640px;
-    margin-left: 320px;
+    margin-left: 20px;
     margin-right: 0px;   
+    
 }
 .noOfComments{
     border-top: 1px solid var(--light-grey);
@@ -37,7 +39,7 @@
     width: 640px;
     display: flex;
     flex-direction: column;
-    margin-left: 320px;
+    margin-left: 20px;
     margin-right: 0px;
 }
 .comments-details p{

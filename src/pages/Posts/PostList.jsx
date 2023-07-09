@@ -27,10 +27,10 @@ const PostList = ({ posts }) => {
     editPost,
     deletePost,
     postData,
-    isLoading
+    isLoading,
   } = usePosts();
   const {
-    userData: { bookmarks },
+    userData,
   } = useAuth();
 
   const {
@@ -57,11 +57,11 @@ const PostList = ({ posts }) => {
             <img src={avatarURL} alt="pc" width={30} height={30} />
           </div>
           <div>
-            <HiOutlineDotsHorizontal
+            {username===userData.username && <HiOutlineDotsHorizontal
               onClick={() => setShowEditAndDelete(!showEditAndDelete)}
               className="menuButton"
-            />
-            {showEditAndDelete && (
+            />}
+            {(showEditAndDelete) && (
               <div className="editAndDelete">
                
                 <button
@@ -121,12 +121,12 @@ const PostList = ({ posts }) => {
               {comments?.length > 0 && comments?.length}
               <button
                 onClick={
-                  bookmarks.find((postId) => postId === _id)
+                  userData.bookmarks.find((postId) => postId === _id)
                     ? () => removeFromBookMarks(_id)
                     : () => addPostToBookMarks(_id)
                 }
               >
-                {bookmarks.find((postId) => postId === _id) ? (
+                {userData.bookmarks.find((postId) => postId === _id) ? (
                   <BsBookmarkFill />
                 ) : (
                   <BsBookmark />
@@ -161,6 +161,7 @@ const PostList = ({ posts }) => {
             onClick={() => {
               editPost(postToBeEdited);
               setShowEditBox(false);
+              setShowEditAndDelete(false);
             }}
           >
             Save

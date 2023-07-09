@@ -14,7 +14,7 @@ export const PostContextProvider = ({ children }) => {
     userDetails: {},
     posts: [],
     bookmarks: [],
-    filterBy: "",
+    searchBy: "",
   });
 
   const getPosts = async () => {
