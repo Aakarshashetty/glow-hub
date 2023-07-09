@@ -1,7 +1,6 @@
 # Glow Hub
 This is the Skin Care Social Media App designed exclusively for skin care enthusiasts, professionals, and anyone passionate about maintaining healthy and radiant skin.
-
-##Features:
+## Features:
 -Community Feed
 -Explore Feed
 -Create a Post
